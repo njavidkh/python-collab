@@ -17,6 +17,7 @@ def create_parser():
     :return:  An `argparse.ArgumentParser` instance
     """
     parser = argparse.ArgumentParser('pysines', description="")
+    
     return parser
 
 def parse_args(args):
@@ -28,6 +29,11 @@ def parse_args(args):
     parser = create_parser()
     return parser.parse_args(args)
 
+
+import os
+import numpy as np
+from matplotlib import pyplot as plt
+
 def run(options):
     """
     Run the actual script
@@ -37,6 +43,21 @@ def run(options):
 
     # Do some additional check on the options
     check_options(options)
+    
+    
+    print "Figure(1)"
+    Numberofsins = options.num
+    Destfile = options.file
+    
+    for i in range(Numberofsins):
+        time = np.linspace(0, 4 * np.pi)
+        data = np.sin(time/i) 
+        plt.plot(time, data)
+        plt.title('sin. waves')
+        plt.xlabel('Time')
+        plt.ylabel('sin. waves')
+    
+    
 
     pass
 
